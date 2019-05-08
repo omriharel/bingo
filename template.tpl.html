@@ -1,0 +1,62 @@
+<html dir="rtl">
+	<head>
+		<style>
+			body {
+				font-family: Tahoma;
+				display: grid;
+				grid-template-columns: 485px 485px 485px;
+                grid-row-gap: 90px;
+                grid-column-gap: 40px;
+			}
+
+			table {
+				table-layout: fixed;
+				width: 100%;
+				height: 440px;
+			}
+
+			th {
+				font-size: 18pt;
+				font-weight: bold;
+				height: 50px;
+				padding: 15px;
+			}
+
+			table, td, th {
+				border: 2px solid black;
+				border-spacing: 0;
+			}
+
+			td {
+  				padding: 5px;
+  				text-align: center;
+  				font-size: 12pt;
+  			}
+
+  			.centerword {
+  				font-weight: bold;
+  			}
+
+		</style>
+		<title>Bingo!</title>
+	</head>
+	<body>
+		{% for bingo_table in data %}
+		<table>
+
+			<tr><th colspan="5">בינגו יולי אדלשטיין!</th></tr>
+
+			{% for row in bingo_table %}
+            <tr>
+
+            	{% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+
+            </tr>
+            {% endfor %}
+
+        </table>
+		{% endfor %}
+	</body>
+</html>
