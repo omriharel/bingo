@@ -10,45 +10,39 @@ words = [
     u'שלום',
     u'מלחמה',
     u'לייצג',
-    u'עוטף עזה',
+    u'חזית',
     u'ימין',
     u'תל אביב',
     u'שוויון',
-    u'אירוויזיון',
+    u'מכובדיי כולם',
     u'תקווה',
     u'צה"ל',
     u'דמוקרטית',
     u'אלפיים',
-    u'דונלד טראמפ',
-    u'כבוד הכנסת',
+    u'הכנסת',
     u'רמטכ"ל',
     u'ערבי',
     u'שגרירינו',
     u'יחד',
     u'נשיא המדינה',
-    u'אסיר ציון',
-    u'צוואר',
+    u'המצב',
+    u'חלב',
+    u'אבטלה',
+    u'ברכה',
     u'הללויה',
     u'נתינה',
     u'שוויון',
     u'מפולגים',
     u'בתי המשפט',
     u'תהליכים',
-    u'חיל אויר',
+    u'חיל אוויר',
+    u'חגיגי',
     u'מתרגש',
-    u'נפעם',
-    u'מצות',
     u'ממשלה',
     u'קואליציה',
-    u'מלוכדים',
-    u'יד',
-    u'משקוף',
-    u'מטרות',
     u'טרור',
-    u'חמאס',
     u'ירושלים',
-    u'שמיים',
-    u'יעקב',
+    u'קהל',
     u'זית',
     u'סטארט-אפ',
     u'ריבונות',
@@ -58,17 +52,35 @@ words = [
     u'נושבות',
     u'צעדים',
     u'קדימה',
+    u'ניצחון',
+    u'משרד הבריאות',
+    u'הצוותים הרפואיים',
+    u'בזכות ולא בחסד',
+    u'*דופק לגמרי את הביטוי*',
+    u'*קורא את המילה עם דגש לא נכון*',
+    u'*מגמגם*',
 ]
 
 
 center_words = [
-    u'אחדות',
-    u'ממלכתיות',
-    u'סייבר',
+    u'קורונה',
 ]
 
 
-num_tables = 24
+num_tables = 1
+copies = [
+    u'עמרי',
+    u'איגור',
+    u'לב',
+    u'הדר',
+    u'נועם הבן',
+    u'נועם הבת',
+    u'אייל',
+    u'אריאל',
+    u'סהר',
+    u'קובי',
+    u'עופר',
+]
 table_width = 5
 table_height = 5
 table_center = ((table_height - 1) / 2, (table_width -1 ) / 2)
@@ -111,18 +123,13 @@ def main():
 
     template = jinja_env.get_template('template.tpl.html')
 
-    data = generate_bingo_data()
+    for recipient in copies:
+        data = generate_bingo_data()
 
-    written_template = template.render(data=data)
+        written_template = template.render(data=data, recipient=recipient)
 
-    print '--------------------------'
-    print 'Template:'
-    print written_template
-
-    with io.open('output.html', 'w', encoding='utf-8') as f:
-        f.write(written_template)
-
-    print '--------------------------'
+        with io.open(u'{0}.html'.format(recipient), 'w', encoding='utf-8') as f:
+            f.write(written_template)
 
 
 if __name__ == '__main__':

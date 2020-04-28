@@ -1,5 +1,14 @@
 <html dir="rtl">
 	<head>
+		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$(function() {
+				$('td').click(function() {
+					$(this).toggleClass('toggled');
+				});
+			});
+		</script>
 		<style>
 			body {
 				font-family: Tahoma;
@@ -35,7 +44,11 @@
 
   			.centerword {
   				font-weight: bold;
-  			}
+			}
+
+			.toggled {
+				background-color: #92c0ee;
+			}
 
 		</style>
 		<title>Bingo!</title>
@@ -44,7 +57,7 @@
 		{% for bingo_table in data %}
 		<table>
 
-			<tr><th colspan="5">בינגו יולי אדלשטיין!</th></tr>
+			<tr><th colspan="5">בינגו בני גנץ! <small>({{ recipient }})</small></th></tr>
 
 			{% for row in bingo_table %}
             <tr>
@@ -58,5 +71,6 @@
 
         </table>
 		{% endfor %}
+
 	</body>
 </html>
